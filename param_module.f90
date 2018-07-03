@@ -109,9 +109,9 @@ Module param_module
 
 
   ! vatms_(x,y,z) number For Virtual particles On the wall (natms_x * )
-  Integer,           Parameter :: natms_x = 10 , vatms_x = Int(natms_x*1.0_wp)
+  Integer,           Parameter :: natms_x = 10 , vatms_x = Int(natms_x*2.0_wp)
   Integer,           Parameter :: natms_y = 30 , vatms_y = Int(natms_y*1.0_wp)
-  Integer,           Parameter :: natms_z = 10 , vatms_z = Int(natms_z*1.0_wp)
+  Integer,           Parameter :: natms_z = 10 , vatms_z = Int(natms_z*2.0_wp)
 
 
   ! Integration flavour
