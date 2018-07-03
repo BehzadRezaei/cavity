@@ -563,3 +563,78 @@ Subroutine bcshift(imcon,mdir,tstep,time)
   End If
 
 End Subroutine bcshift
+
+
+!*******************************
+
+
+Subroutine bounce_back(imcon,tstep)
+
+
+  Use kinds_f90
+  Use setup_module,     Only : half_plus,half_minus
+  Use config_module,    Only : natms,nlast,lstfrz,                             &
+                               celx,cely,celz,                                 &
+                               xxx,yyy,zzz,vxx,vyy,vzz
+
+
+
+  Implicit None
+
+  Integer,           Intent( In    ) :: imcon
+  Real( Kind = wp ), Intent( In    ) :: tstep
+
+  Integer                  :: i
+  Real( Kind = wp )        :: aaa,ccc,xss,yss,zss
+
+  half_plus  = Nearest(0.5_wp,1.0_wp)
+  half_minus = Nearest(0.5_wp,-1.0_wp)
+
+  
+     aaa=1.0_wp/celx
+     ccc=1.0_wp/celz
+
+     Do i=1,natms
+
+		xss=aaa*xxx(i)
+		zss=ccc*zzz(i)
+
+		If (xss >= half_plus .or. xss <= -half_plus) Then
+
+		   vxx(i) = -vxx(i)
+		   vyy(i) = -vyy(i)
+		   vzz(i) = -vzz(i)
+
+		   Goto 1
+
+		Else If (zss >= half_plus ) Then
+
+		   vxx(i) =1.034_wp-vxx(i)
+		   vyy(i) = -vyy(i)
+		   vzz(i) = -vzz(i)
+
+		   Goto 1
+
+		Else if (zss <= -half_plus) Then
+
+	 	   vxx(i) = -vxx(i)
+		   vyy(i) = -vyy(i)
+		   vzz(i) = -vzz(i)
+
+		   Goto 1
+
+		End If
+		
+		Goto 2
+
+1		xxx(i)=xxx(i)+tstep*vxx(i)
+		yyy(i)=yyy(i)+tstep*vyy(i)
+		zzz(i)=zzz(i)+tstep*vzz(i)
+
+2       Continue
+
+     End Do 
+   
+
+
+End Subroutine bounce_back
