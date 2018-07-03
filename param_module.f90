@@ -184,9 +184,9 @@ Module param_module
   Logical,           Parameter :: config_input = .False.
 
   ! shearcavity = .True.        : carry out shear cavity simulation
-  Logical,           Parameter :: shearcavity = .False.
+  Logical,           Parameter :: shearcavity = .True.
   Logical,           Parameter :: Periodic1   = .False.
-  Logical,           Parameter :: Periodic2   = .True.
+  Logical,           Parameter :: Periodic2   = .False.
 
 
 ! GEOMETRY
