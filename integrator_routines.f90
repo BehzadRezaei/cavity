@@ -187,6 +187,8 @@ Subroutine time_integration(maxtimestep,time,tmst,dnstep)
 
 !     Call bcshift(imcon,mdir,tstep,time)
 
+     Call bounce_back(imcon,tstep)
+
 ! Exchange atomic data in border regions
 ! (for oneway periodic or double periodic boundary condition, imcon=2 or 3 )
 
@@ -227,6 +229,8 @@ Subroutine time_integration(maxtimestep,time,tmst,dnstep)
 ! Implementing Boundary condition
 
 !     Call bcshift(imcon,mdir,tstep,time)
+
+     Call bounce_back(imcon,tstep)
 
 ! Calculate physical quantities and collect statistics
 
