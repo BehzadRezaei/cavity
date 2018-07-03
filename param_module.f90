@@ -117,7 +117,7 @@ Module param_module
   ! Integration flavour
   ! l_vv=0 Velocity Verlet Algorithm
   ! l_vv=1 Modified Version of Velocity Verlet Algorithm
-  Integer,           Parameter :: l_vv = 0
+  Integer,           Parameter :: l_vv = 1
 
   ! timestep and times for job execution
   Real( Kind = wp ),      Save :: tstep = 0.01_wp
